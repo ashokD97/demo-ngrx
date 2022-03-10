@@ -1,0 +1,36 @@
+<form (ngSubmit)="onSubmit(createForm)" #createForm="ngForm">
+    <div class="form-group">
+      <label for="name">User Name</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        class="form-control"
+        ngModel
+        required
+        style="width: 400px"/>
+    </div>
+    <div class="form-group">
+      <label for="side">Email</label>
+      <input
+        type="text"
+        id="email"
+        name="email"
+        class="form-control"
+        ngModel
+        required
+        style="width: 400px"/>
+    </div>
+    <div class="form-group">
+      <label for="side">Mobile</label>
+      <input
+        type="text"
+        id="mobile"
+        name="mobile"
+        class="form-control"
+        ngModel
+        required
+        style="width: 400px"/>
+    </div>
+    <button [disabled]="createForm.invalid" class="btn btn-primary mt-2" type="submit">Create</button>
+  </form>

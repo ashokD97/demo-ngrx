@@ -1,0 +1,73 @@
+<div class="">
+    <table class="table table-dark">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Mobile</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users$ | async">
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.mobile }}</td>
+          <td>
+            <button (click)="showUpdateForm(user);openModal(template)" class="btn btn-primary" style="margin: 5px" >Update</button>
+            <button (click)="deleteUser(user.id)" class="btn btn-danger" style="margin: 5px">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    
+  </div>
+  <ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left"><span *ngIf="isUpdateActivated">Update</span> User</h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div>
+        <form (ngSubmit)="updateUser(updateForm)" #updateForm="ngForm">
+          <div class="form-group">
+            <label for="name">User Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              class="form-control"
+              required
+              [(ngModel)]="userToBeUpdated.name"
+              style="width: 400px"/>
+          </div>
+          <div class="form-group">
+            <label for="side">Email</label>
+            <input
+              type="text"
+              id="email"
+              name="email"
+              class="form-control"
+              required
+              [(ngModel)]="userToBeUpdated.email"
+              style="width: 400px"/>
+          </div>
+          <div class="form-group">
+              <label for="side">Mobile</label>
+              <input
+                type="text"
+                id="mobile"
+                name="mobile"
+                class="form-control"
+                required
+                [(ngModel)]="userToBeUpdated.mobile"
+                style="width: 400px"/>
+            </div>
+          <button [disabled]="updateForm.invalid" class="btn btn-primary mt-2" type="submit">Update</button>
+        </form>
+      </div>
+    </div>
+  </ng-template>
